@@ -1,24 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+import { createFileRoute, Link } from "@tanstack/react-router"; import { ArrowRight, BookOpen, Gamepad2, Music2, NotebookPen } from "lucide-react"; import { Button } from "@/components/ui/button"; import { useAppState } from "@/lib/app-state"; import { getDocument } from "@/lib/documents"; import { useT } from "@/lib/i18n"; import { PetAvatar } from "@/components/app/PetAvatar";
+export const Route=createFileRoute("/")({head:()=>({meta:[{title:"Felar’s Studies — Personal Study Room"},{name:"description",content:"Felar’s private library, music, notes, pets, and break games."},{property:"og:title",content:"Felar’s Studies"},{property:"og:description",content:"A quiet personal study computer."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:Home});
+function Home(){const {state}=useAppState();const t=useT();const doc=state.library.lastOpenedDocument?getDocument(state.library.lastOpenedDocument):null;const links=[['/library',BookOpen,'library'],['/notes',NotebookPen,'notes'],['/music',Music2,'music'],['/games',Gamepad2,'games']] as const;return <div className="page home-page"><header className="home-header"><p className="terminal-kicker">FELAR_OS / HOME</p><h1>{t("welcomeBack",{name:state.user.name})}<span className="cursor">_</span></h1><p>{t("tagline")}</p></header><section className="home-grid"><div className="continue-panel"><p className="eyebrow">{t("lastOpened")}</p>{doc?<><h2>{t(doc.subject)} — {t(`part${doc.part}`)}</h2><p>{t("page")} {state.library.lastPageByDocument[doc.id]??1} / {doc.pages}</p><Button asChild><Link to="/reader/$documentId" params={{documentId:doc.id}}>{t("continue")}<ArrowRight/></Link></Button></>:<><h2>{t("library")}</h2><p>{t("jarvisLibrary")}</p><Button asChild><Link to="/library">{t("open")}<ArrowRight/></Link></Button></>}</div><Link to="/pet" className="pet-home"><div className="room-window"><span className="pixel-star s1">+</span><span className="pixel-star s2">·</span><div className="room-floor"/><PetAvatar type={state.pet.type} name={state.pet.name} equipped={state.pet.equippedItems}/></div><p>{t("jarvisPet",{pet:state.pet.name})}</p></Link></section><nav className="quick-links">{links.map(([to,Icon,key])=><Link key={to} to={to}><Icon/><span>{t(key)}</span><ArrowRight/></Link>)}</nav></div>}
