@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LibraryRouteImport } from './routes/library'
-import { Route as ReaderRouteImport } from './routes/reader.'
+import { Route as MusicRouteImport } from './routes/music'
+import { Route as NotesRouteImport } from './routes/notes'
+import { Route as PetRouteImport } from './routes/pet'
+import { Route as ReaderDocumentIdRouteImport } from './routes/reader.$documentId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +26,75 @@ const LibraryRoute = LibraryRouteImport.update({
   path: '/library',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReaderRoute = ReaderRouteImport.update({
-  id: '/reader/',
-  path: '/reader/',
+const MusicRoute = MusicRouteImport.update({
+  id: '/music',
+  path: '/music',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesRoute = NotesRouteImport.update({
+  id: '/notes',
+  path: '/notes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PetRoute = PetRouteImport.update({
+  id: '/pet',
+  path: '/pet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReaderDocumentIdRoute = ReaderDocumentIdRouteImport.update({
+  id: '/reader/$documentId',
+  path: '/reader/$documentId',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/library': typeof LibraryRoute
-  '/reader/': typeof ReaderRoute
+  '/music': typeof MusicRoute
+  '/notes': typeof NotesRoute
+  '/pet': typeof PetRoute
+  '/reader/$documentId': typeof ReaderDocumentIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/library': typeof LibraryRoute
-  '/reader': typeof ReaderRoute
+  '/music': typeof MusicRoute
+  '/notes': typeof NotesRoute
+  '/pet': typeof PetRoute
+  '/reader/$documentId': typeof ReaderDocumentIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/library': typeof LibraryRoute
-  '/reader/': typeof ReaderRoute
+  '/music': typeof MusicRoute
+  '/notes': typeof NotesRoute
+  '/pet': typeof PetRoute
+  '/reader/$documentId': typeof ReaderDocumentIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/library' | '/reader/'
+  fullPaths:
+    '/' | '/library' | '/music' | '/notes' | '/pet' | '/reader/$documentId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/library' | '/reader'
-  id: '__root__' | '/' | '/library' | '/reader/'
+  to: '/' | '/library' | '/music' | '/notes' | '/pet' | '/reader/$documentId'
+  id:
+    | '__root__'
+    | '/'
+    | '/library'
+    | '/music'
+    | '/notes'
+    | '/pet'
+    | '/reader/$documentId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LibraryRoute: typeof LibraryRoute
-  ReaderRoute: typeof ReaderRoute
+  MusicRoute: typeof MusicRoute
+  NotesRoute: typeof NotesRoute
+  PetRoute: typeof PetRoute
+  ReaderDocumentIdRoute: typeof ReaderDocumentIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +113,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/reader/': {
-      id: '/reader/'
-      path: '/reader'
-      fullPath: '/reader/'
-      preLoaderRoute: typeof ReaderRouteImport
+    '/music': {
+      id: '/music'
+      path: '/music'
+      fullPath: '/music'
+      preLoaderRoute: typeof MusicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes': {
+      id: '/notes'
+      path: '/notes'
+      fullPath: '/notes'
+      preLoaderRoute: typeof NotesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pet': {
+      id: '/pet'
+      path: '/pet'
+      fullPath: '/pet'
+      preLoaderRoute: typeof PetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reader/$documentId': {
+      id: '/reader/$documentId'
+      path: '/reader/$documentId'
+      fullPath: '/reader/$documentId'
+      preLoaderRoute: typeof ReaderDocumentIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +147,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LibraryRoute: LibraryRoute,
-  ReaderRoute: ReaderRoute,
+  MusicRoute: MusicRoute,
+  NotesRoute: NotesRoute,
+  PetRoute: PetRoute,
+  ReaderDocumentIdRoute: ReaderDocumentIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
