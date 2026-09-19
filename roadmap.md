@@ -1,7 +1,7 @@
 # Felar’s Studies roadmap
 
 - [x] Preserve and catalog all supplied PDFs
-- [ ] Add newly supplied Arabic and English story books
+- [x] Add newly supplied Arabic and English story books
 - [x] Add centralized local profile and translations
 - [x] Add onboarding and persistent app shell
 - [x] Add home, library, and PDF reader
