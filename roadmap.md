@@ -16,3 +16,11 @@
 - [x] Add richer background motion, transitions, and sound feedback
 - [ ] Finish visual system, responsive behavior, and metadata
 - [ ] Verify build and key flows
+## Native reading library rebuild
+- [ ] Pre-render all 12 books into built-in page assets
+- [ ] Extract searchable text and topic metadata
+- [ ] Replace runtime PDF loading with native book pages
+- [ ] Simplify JARVIS explanation controls
+- [ ] Upgrade reading visuals and motion
+- [ ] Validate English, Arabic, story, desktop, and mobile reading
+
