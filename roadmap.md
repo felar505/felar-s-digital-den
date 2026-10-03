@@ -17,10 +17,10 @@
 - [ ] Finish visual system, responsive behavior, and metadata
 - [ ] Verify build and key flows
 ## Native reading library rebuild
-- [ ] Pre-render all 12 books into built-in page assets
-- [ ] Extract searchable text and topic metadata
-- [ ] Replace runtime PDF loading with native book pages
-- [ ] Simplify JARVIS explanation controls
-- [ ] Upgrade reading visuals and motion
+- [x] Pre-render all 12 books into built-in page assets
+- [x] Extract searchable text and topic metadata
+- [x] Replace runtime PDF loading with native book pages
+- [x] Simplify JARVIS explanation controls
+- [x] Upgrade reading visuals and motion
 - [ ] Validate English, Arabic, story, desktop, and mobile reading
 
