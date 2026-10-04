@@ -22,5 +22,5 @@
 - [x] Replace runtime PDF loading with native book pages
 - [x] Simplify JARVIS explanation controls
 - [x] Upgrade reading visuals and motion
-- [ ] Validate English, Arabic, story, desktop, and mobile reading
+- [x] Validate English, Arabic, story, desktop, and mobile reading
 
