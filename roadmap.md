@@ -24,4 +24,12 @@
 - [x] Upgrade reading visuals and motion
 - [x] Validate English, Arabic, story, desktop, and mobile reading
 - [x] Add a smoothly collapsible navigation rail and roomier library layout
-
+## Native semantic reading and polish
+- [ ] Convert all 12 books from page screenshots into semantic in-site chapters preserving text, images, and RTL
+- [ ] Add six reading modes with Webtoon as the default
+- [ ] Replace page-level JARVIS with contextual term explanations
+- [ ] Make the music player hideable and draggable/minimizable
+- [ ] Replace Beethoven with Hotel_4.mp3 stored under public/stuff
+- [ ] Add lightweight richer background effects and subtle Undertale references
+- [ ] Improve all six games
+- [ ] Verify every book, language direction, reading mode, player state, and game flow
