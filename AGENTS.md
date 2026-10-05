@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the primary navigation in a persistent, user-collapsible icon rail because it preserves fast access while giving reading content more room.
