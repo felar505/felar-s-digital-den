@@ -23,4 +23,5 @@
 - [x] Simplify JARVIS explanation controls
 - [x] Upgrade reading visuals and motion
 - [x] Validate English, Arabic, story, desktop, and mobile reading
+- [x] Add a smoothly collapsible navigation rail and roomier library layout
 
