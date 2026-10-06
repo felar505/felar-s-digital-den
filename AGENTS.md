@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep the primary navigation in a persistent, user-collapsible icon rail because it preserves fast access while giving reading content more room.
+- Generate book content offline into structured JSON under public/stuff/books and render semantic HTML at runtime; this keeps reading native, portable, and PDF-free.
