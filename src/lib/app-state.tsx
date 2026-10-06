@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 
 export type Language = "en" | "ar" | "fr";
 export type Theme = "dark" | "light" | "system";
+export type ReadingMode = "scroll" | "ltr" | "rtl" | "vertical" | "webtoon" | "continuous";
 export type PetType = "owl" | "cat" | "bunny" | "frog" | "penguin";
 export type Note = { id: string; title: string; body: string; updatedAt: number };
 export type AppState = {
@@ -11,16 +12,16 @@ export type AppState = {
   games: { coins: number; highScores: Record<string, number> };
   library: { lastOpenedDocument: string | null; lastPageByDocument: Record<string, number>; bookmarks: Record<string, number[]> };
   notes: Note[];
-  music: { current: "beethoven" | "youtube"; youtubeId: string; playing: boolean; volume: number; muted: boolean; autoplay: boolean };
-  settings: { sound: boolean; soundVolume: number; visualEffects: boolean; rememberPage: boolean; readerWidth: "comfortable" | "wide"; fullscreen: boolean };
+  music: { current: "hotel" | "youtube"; youtubeId: string; playing: boolean; volume: number; muted: boolean; autoplay: boolean; minimized: boolean; hidden: boolean; position: { x: number; y: number } };
+  settings: { sound: boolean; soundVolume: number; visualEffects: boolean; rememberPage: boolean; readerWidth: "comfortable" | "wide"; readingMode: ReadingMode; fullscreen: boolean };
 };
-const initialState: AppState = { version: 1, setup: false, user: { name: "Felar", language: "en", theme: "dark" }, pet: { type: "owl", name: "Nova", ownedItems: [], equippedItems: [], roomItems: [] }, games: { coins: 0, highScores: {} }, library: { lastOpenedDocument: null, lastPageByDocument: {}, bookmarks: {} }, notes: [], music: { current: "beethoven", youtubeId: "", playing: false, volume: .45, muted: false, autoplay: false }, settings: { sound: true, soundVolume: .35, visualEffects: true, rememberPage: true, readerWidth: "comfortable", fullscreen: false } };
+const initialState: AppState = { version: 1, setup: false, user: { name: "Felar", language: "en", theme: "dark" }, pet: { type: "owl", name: "Nova", ownedItems: [], equippedItems: [], roomItems: [] }, games: { coins: 0, highScores: {} }, library: { lastOpenedDocument: null, lastPageByDocument: {}, bookmarks: {} }, notes: [], music: { current: "hotel", youtubeId: "", playing: false, volume: .45, muted: false, autoplay: false, minimized: false, hidden: false, position: { x: 24, y: 96 } }, settings: { sound: true, soundVolume: .35, visualEffects: true, rememberPage: true, readerWidth: "comfortable", readingMode: "webtoon", fullscreen: false } };
 const STORAGE_KEY = "felars-studies-v1";
 type Store = { state: AppState; hydrated: boolean; update: (fn: (s: AppState) => AppState) => void; reset: () => void };
 const Ctx = createContext<Store | null>(null);
 export function AppStateProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AppState>(initialState); const [hydrated, setHydrated] = useState(false);
-  useEffect(() => { try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) setState({ ...initialState, ...JSON.parse(raw) }); } catch {} setHydrated(true); }, []);
+  useEffect(() => { try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) { const saved=JSON.parse(raw); setState({ ...initialState, ...saved, user:{...initialState.user,...saved.user}, pet:{...initialState.pet,...saved.pet}, games:{...initialState.games,...saved.games}, library:{...initialState.library,...saved.library}, music:{...initialState.music,...saved.music,current:saved.music?.current==="beethoven"?"hotel":saved.music?.current??"hotel",position:{...initialState.music.position,...saved.music?.position}}, settings:{...initialState.settings,...saved.settings} }); } } catch {} setHydrated(true); }, []);
   useEffect(() => { if (hydrated) localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }, [state, hydrated]);
   useEffect(() => { const root = document.documentElement; root.lang = state.user.language; root.dir = state.user.language === "ar" ? "rtl" : "ltr"; const dark = state.user.theme === "dark" || (state.user.theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches); root.classList.toggle("dark", dark); root.dataset["effects"] = state.settings.visualEffects ? "on" : "off"; }, [state.user.language, state.user.theme, state.settings.visualEffects]);
   const value = useMemo<Store>(() => ({ state, hydrated, update: (fn) => setState((s) => fn(s)), reset: () => { localStorage.removeItem(STORAGE_KEY); setState(initialState); } }), [state, hydrated]);
