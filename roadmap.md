@@ -1,5 +1,14 @@
 # Felar’s Studies roadmap
 
+## Arabic source recovery — current priority
+- [x] Verify both Arabic source URLs (HTTP 200): Part 1 has 164 PDF pages, Part 2 has 175
+- [x] Apply exact exclusions: 159 included Part 1 pages, 171 included Part 2 pages; preserve source-position IDs
+- [x] Fix book opening and continuous reading/resume/navigation; add contents and typography controls
+- [x] Verify both Arabic book links, RTL, excluded-page absence, continuous scrolling, resume, typography, zero PDF requests, and no browser errors on desktop
+- [ ] Verify mobile Arabic reading and all six reading modes
+- [ ] Recover native Arabic text and illustrations — blocked by damaged embedded font mappings; direct extraction and OCR samples are not accurate enough for publication
+- [ ] Complete manual page-by-page source proofreading — 0 pages certified; do not label damaged legacy text complete
+
 - [x] Preserve and catalog all supplied PDFs
 - [x] Add newly supplied Arabic and English story books
 - [x] Add centralized local profile and translations

@@ -1,0 +1,17 @@
+{
+  "id": "arabic-2",
+  "sourceUrl": "https://colossal-gold-9ym6scjo.edgeone.dev/Arabic-EB-part2_compressed.pdf",
+  "sourceHttpStatus": 200,
+  "sha256": "715a5596cd1de2350ed313d3fb2415055c463a0fba58945b4865328d7335597a",
+  "sourcePageCount": 175,
+  "excludedPages": [
+    2,
+    3,
+    126,
+    127
+  ],
+  "includedPageCount": 171,
+  "verifiedPageCount": 0,
+  "status": "needs-review",
+  "blocker": "Embedded font mappings split Arabic letters and dots. OCR also introduces errors. Page-by-page source recovery and proofreading remain unfinished."
+}

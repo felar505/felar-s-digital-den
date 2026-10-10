@@ -10,10 +10,10 @@ export type AppState = {
   user: { name: string; language: Language; theme: Theme };
   pet: { type: PetType; name: string; ownedItems: string[]; equippedItems: string[]; roomItems: string[] };
   games: { coins: number; highScores: Record<string, number> };
-  library: { lastOpenedDocument: string | null; lastPageByDocument: Record<string, number>; bookmarks: Record<string, number[]> };
+   library: { lastOpenedDocument: string | null; lastPageByDocument: Record<string, number>; bookmarks: Record<string, number[]>; positionByDocument?: Record<string, {page:number; offset:number}> };
   notes: Note[];
   music: { current: "hotel" | "youtube"; youtubeId: string; playing: boolean; volume: number; muted: boolean; autoplay: boolean; minimized: boolean; hidden: boolean; position: { x: number; y: number } };
-  settings: { sound: boolean; soundVolume: number; visualEffects: boolean; rememberPage: boolean; readerWidth: "comfortable" | "wide"; readingMode: ReadingMode; fullscreen: boolean };
+   settings: { sound: boolean; soundVolume: number; visualEffects: boolean; rememberPage: boolean; readerWidth: "comfortable" | "wide"; readingMode: ReadingMode; fullscreen: boolean; readerFontSize?:number; readerLineHeight?:number; readerParagraphSpace?:number };
 };
 const initialState: AppState = { version: 1, setup: false, user: { name: "Felar", language: "en", theme: "dark" }, pet: { type: "owl", name: "Nova", ownedItems: [], equippedItems: [], roomItems: [] }, games: { coins: 0, highScores: {} }, library: { lastOpenedDocument: null, lastPageByDocument: {}, bookmarks: {} }, notes: [], music: { current: "hotel", youtubeId: "", playing: false, volume: .45, muted: false, autoplay: false, minimized: false, hidden: false, position: { x: 24, y: 96 } }, settings: { sound: true, soundVolume: .35, visualEffects: true, rememberPage: true, readerWidth: "comfortable", readingMode: "webtoon", fullscreen: false } };
 const STORAGE_KEY = "felars-studies-v1";
