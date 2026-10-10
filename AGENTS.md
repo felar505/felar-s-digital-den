@@ -11,3 +11,5 @@
 
 - Keep the primary navigation in a persistent, user-collapsible icon rail because it preserves fast access while giving reading content more room.
 - Generate book content offline into structured JSON under public/stuff/books and render semantic HTML at runtime; this keeps reading native, portable, and PDF-free.
+- Preserve original PDF-position IDs after exclusions and track source hashes and page-level verification offline; this prevents false completeness claims and incorrect resume/navigation.
+- Use the semantic book flow itself as the scroll/observer root and save relative page offsets in centralized state; this keeps continuous reading and restoration reliable across layouts.
