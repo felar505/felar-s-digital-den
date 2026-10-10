@@ -1,5 +1,12 @@
 # Felar’s Studies roadmap
 
+## Arabic source recovery — current priority
+- [ ] Verify both Arabic source URLs and uploaded PDF page counts
+- [ ] Recover native Arabic text with page-level OCR checks and exact exclusions
+- [ ] Fix book opening and continuous reading/resume/navigation
+- [ ] Verify Arabic Parts 1 and 2 on desktop and mobile
+- [ ] Complete manual page-by-page source proofreading (do not label OCR complete)
+
 - [x] Preserve and catalog all supplied PDFs
 - [x] Add newly supplied Arabic and English story books
 - [x] Add centralized local profile and translations
